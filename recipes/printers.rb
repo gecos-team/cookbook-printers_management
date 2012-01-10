@@ -50,7 +50,7 @@ drivers = connection.getPPDs(ppd_make_and_model='#{model}')
 ppd = '#{ppd}'
 if ppd != '':
     for key in drivers.keys():
-        if key.startswith('lsb/usr') and key.endswith(ppd):
+        if key.startswith('lsb/usr') and key.endswith('#{model}'/ppd):
             ppd = key
 
 if ppd == '':
