@@ -28,7 +28,7 @@ package 'python-cups' do
   action :nothing
 end.run_action(:install)
 
-node["printers"]["printers_spa"].each do |attributes|
+node["printers_spa"]["printers_spa"].each do |attributes|
   name = attributes['name']
   make = available_printers[name]['make']
   model = available_printers[name]['model']
