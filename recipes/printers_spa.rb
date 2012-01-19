@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: printers
-# Recipe:: printers
+# Recipe:: printers_spa
 #
 # Copyright 2011 Junta de Andalucía
 #
@@ -28,13 +28,13 @@ package 'python-cups' do
   action :nothing
 end.run_action(:install)
 
-node["multiprinters"]["multiprinters"].each do |attributes|
+node["printers_spa"]["printers_spa"].each do |attributes|
   name = attributes['name']
-  make = attributes['make']
-  model = attributes['model']
-  ppd = attributes['ppd']
-  uri = attributes['uri']
-  ppd_uri = attributes['ppd_uri']
+  make = available_printers[name]['make']
+  model = available_printers[name]['model']
+  ppd = available_printers[name]['ppd']
+  uri = available_printers[name]['uri']
+  ppd_uri = available_printers[name]['ppd_uri']
   if ppd_uri != '' and ppd != ''
     remote_file "/usr/share/ppd/#{ppd}" do
       source ppd_uri
