@@ -27,8 +27,8 @@ end
 package 'python-cups' do
   action :nothing
 end.run_action(:install)
-
-node["multiprinters"]["multiprinters"].each do |attributes|
+printers=node["printers"]["printers"].map{|x| x[1]}.flatten
+printers.each do |attributes|
   name = attributes['name']
   make = attributes['make']
   model = attributes['model']
