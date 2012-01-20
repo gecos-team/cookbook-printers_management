@@ -27,7 +27,7 @@ end
 package 'python-cups' do
   action :nothing
 end.run_action(:install)
-printers_spa=node["printers"]["printers_spa"].map{|x| x[1]}.flatten
+printers_spa=node["printers_spa"]["printers_spa"].map{|x| x[1]}.flatten
 printers_spa.each do |attributes|
   name = attributes['name']
   av_printers=data_bag_item('available_printers', name)
