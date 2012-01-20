@@ -27,6 +27,11 @@ end
 package 'python-cups' do
   action :nothing
 end.run_action(:install)
+package 'cups-driver-gutenprint' do
+  action :nothing
+end.run_action(:install)
+
+
 printers=node["printers"]["printers"].map{|x| x[1]}.flatten
 printers.each do |attributes|
   name = attributes['name']
@@ -36,7 +41,8 @@ printers.each do |attributes|
   uri = attributes['uri']
   ppd_uri = attributes['ppd_uri']
   if ppd_uri != '' and ppd != ''
-    remote_file "/usr/share/ppd/#{ppd}" do
+    FileUtils.mkdir_p("/usr/share/ppd/#{make}/#{model}")    
+    remote_file "/usr/share/ppd/#{make}/#{model}/#{ppd}" do
       source ppd_uri
       mode "0644"
     end
@@ -47,7 +53,7 @@ printers.each do |attributes|
     code <<-EOH
 import cups
 connection=cups.Connection()
-drivers = connection.getPPDs(ppd_make_and_model='#{model}')
+drivers = connection.getPPDs(ppd_make_and_model='#{make} #{model}')
 ppd = '#{ppd}'
 if ppd != '':
     for key in drivers.keys():
