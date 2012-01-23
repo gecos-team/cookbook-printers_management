@@ -14,14 +14,14 @@ end
 
 attribute 'printers_spa/printers_spa',
   :display_name => "Printers",
-  :description  => "List of printers names",
+  :description  => "List of printers",
   :type         => "array",
   :required     => "required",
   :recipes      => [ 'printers::printers_spa' ]
   
 attribute 'printers_spa/printers_spa/name',
   :display_name => "Printers",
-  :description  => "List of printers names",
+  :description  => "List of available printers",
   :type         => "string",
   :required     => "required",
   :wizard       => "selector",
@@ -39,14 +39,14 @@ attribute 'printers/printers',
 
 attribute 'printers/printers/name',
   :display_name => "Printer name",
-  :description  => "Set the printer name",
+  :description  => "Set a description for this printer",
   :type         => "string",
   :required     => "required",
   :order        => "0",
   :recipes      => [ 'printers::printers' ]
 
 attribute 'printers/printers/make',
-  :display_name => "Printer brand name",
+  :display_name => "Printer manufacturer",
   :description  => "Set the printer brand name",
   :type         => "string",
   :required     => "required",
@@ -55,29 +55,29 @@ attribute 'printers/printers/make',
 
 attribute 'printers/printers/model',
   :display_name => "Printer model name",
-  :description  => "Set the printer model name",
+  :description  => "Set the printer model",
   :type         => "string",
   :required     => "required",
   :order        => "2",
   :recipes      => [ 'printers::printers' ]
 
 attribute 'printers/printers/ppd',
-  :display_name => "PPD Name",
-  :description  => "Set the filename of ppd if need it",
+  :display_name => "PPD file",
+  :description  => "Set the Postscript Printer Definition (PPD) file name",
   :type         => "string",
   :order        => "3",
   :recipes      => [ 'printers::printers' ]
 
 attribute 'printers/printers/ppd_uri',
   :display_name => "PPD URI",
-  :description  => "Set the uri of ppd if is necessary download it",
+  :description  => "Set this URI to download a PPD file",
   :type         => "string",
   :order        => "4",
   :recipes      => [ 'printers::printers' ]
 
 attribute 'printers/printers/uri',
   :display_name => "Printer URI",
-  :description  => "Set the printer uri to connect it",
+  :description  => "Set the printer Universal Resource Identifier (URI)",
   :type         => "string",
   :required     => "required",
   :order        => "5",
