@@ -31,6 +31,18 @@ package 'cups-driver-gutenprint' do
   action :nothing
 end.run_action(:install)
 
+package 'foomatic-db' do
+  action :nothing
+end.run_action(:install)
+
+package 'foomatic-db-engine' do
+  action :nothing
+end.run_action(:install)
+
+package 'foomatic-db-gutenprint' do
+  action :nothing
+end.run_action(:install)
+
 
 printers=node["printers"]["printers"].map{|x| x[1]}.flatten
 printers.each do |attributes|
@@ -62,7 +74,7 @@ if ppd != '':
 
 if ppd == '':
     ppd = drivers.keys()[0]
-    
+
 connection.addPrinter('#{name}',ppdname=ppd, device='#{uri}')
 connection.enablePrinter('#{name}')
 
