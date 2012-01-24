@@ -73,6 +73,7 @@ attribute 'printers/printers/ppd_uri',
   :description  => "Set the uri of ppd if is necessary download it",
   :type         => "string",
   :order        => "4",
+  :validation   => "url",
   :recipes      => [ 'printers::printers' ]
 
 attribute 'printers/printers/uri',
@@ -81,4 +82,5 @@ attribute 'printers/printers/uri',
   :type         => "string",
   :required     => "required",
   :order        => "5",
+  :validation   => "printer_uri,
   :recipes      => [ 'printers::printers' ]
