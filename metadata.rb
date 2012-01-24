@@ -82,5 +82,5 @@ attribute 'printers/printers/uri',
   :type         => "string",
   :required     => "required",
   :order        => "5",
-  :validation   => "printer_uri,
+  :validation   => "printer_uri",
   :recipes      => [ 'printers::printers' ]
