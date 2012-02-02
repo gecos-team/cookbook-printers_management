@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: printers
-# Recipe:: printers
+# Cookbook Name:: printers_management
+# Recipe:: manual_printers
 #
 # Copyright 2011 Junta de Andalucía
 #
@@ -44,7 +44,7 @@ package 'foomatic-db-gutenprint' do
 end.run_action(:install)
 
 
-printers=node["printers"]["printers"].map{|x| x[1]}.flatten
+printers=node["manual_printers"]["printers"].map{|x| x[1]}.flatten
 printers.each do |attributes|
   name = attributes['name']
   make = attributes['make']

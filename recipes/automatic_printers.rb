@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: printers
-# Recipe:: printers_spa
+# Cookbook Name:: printers_management
+# Recipe:: automatic_printers
 #
 # Copyright 2011 Junta de Andalucía
 #
@@ -30,7 +30,7 @@ end.run_action(:install)
 package 'cups-driver-gutenprint' do
   action :nothing
 end.run_action(:install)
-printers_spa=node["printers_spa"]["printers_spa"].map{|x| x[1]}.flatten
+printers_spa=node["automatic_printers"]["printers_spa"].map{|x| x[1]}.flatten
 printers_spa.each do |attributes|
   name = attributes['name']
   av_printers=data_bag_item('available_printers', name)
