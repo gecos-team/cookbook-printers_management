@@ -63,7 +63,7 @@ attribute 'manual_printers/printers/model',
 
 attribute 'manual_printers/printers/ppd',
   :display_name => "PPD file",
-  :description  => "Set the Postscript Printer Definition (PPD) file name",
+  :description  => "Set the Postscript Printer Definition (PPD) destination file name (how file will be named in the workstation)",
   :type         => "string",
   :order        => "3",
   :recipes      => [ 'printers_management::manual_printers' ]
