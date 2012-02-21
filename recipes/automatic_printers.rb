@@ -30,6 +30,18 @@ end.run_action(:install)
 package 'cups-driver-gutenprint' do
   action :nothing
 end.run_action(:install)
+
+package 'foomatic-db' do
+  action :nothing
+end.run_action(:install)
+
+package 'foomatic-db-engine' do
+  action :nothing
+end.run_action(:install)
+
+package 'foomatic-db-gutenprint' do
+  action :nothing
+end.run_action(:install)
 node["automatic_printers"]["printers_spa"].each do |attributes|
   name = attributes['name']
   av_printers=data_bag_item('available_printers', name)
@@ -60,9 +72,10 @@ if ppd != '':
 
 if ppd == '':
     ppd = drivers.keys()[0]
-    
+
 connection.addPrinter('#{name}',ppdname=ppd, device='#{uri}')
 connection.enablePrinter('#{name}')
+connection.acceptJobs('#{name}')
 
     EOH
   end
