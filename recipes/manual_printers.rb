@@ -76,6 +76,7 @@ if ppd == '':
 
 connection.addPrinter('#{name}',ppdname=ppd, device='#{uri}')
 connection.enablePrinter('#{name}')
+connection.acceptJobs('#{name}')
 
     EOH
   end
