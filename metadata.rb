@@ -3,7 +3,7 @@ maintainer        "David Amian"
 maintainer_email  "damian@emergya.com"
 license           "Apache 2.0"
 description       "Set printers to node"
-version           "0.1.1"
+version           "0.1.2"
 
 recipe            "printers_management::manual_printers", "Set printers to node"
 recipe            "printers_management::automatic_printers", "Set predefined printers to node"

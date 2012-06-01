@@ -63,11 +63,13 @@ node["automatic_printers"]["printers_spa"].each do |attributes|
     code <<-EOH
 import cups
 connection=cups.Connection()
-drivers = connection.getPPDs(ppd_make_and_model='#{make} #{model}')
+make='#{make}'.replace("_"," ")
+model='#{model}'.replace("_"," ")
+drivers = connection.getPPDs(ppd_make_and_model=make+" "+model)
 ppd = '#{ppd}'
 if ppd != '':
     for key in drivers.keys():
-        if key.startswith('lsb/usr') and key.endswith('#{model}/'+ppd):
+        if key.startswith('lsb/usr') and key.endswith(model+'/'+ppd):
             ppd = key
 
 if ppd == '':
