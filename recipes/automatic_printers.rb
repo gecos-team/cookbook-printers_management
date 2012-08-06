@@ -51,8 +51,8 @@ node["automatic_printers"]["printers_spa"].each do |attributes|
   uri = av_printers['uri']
   ppd_uri = av_printers['ppd_uri']
   if (ppd_uri != nil and ppd_uri != '') and (ppd != nil and ppd != '')
-    FileUtils.mkdir_p("/usr/share/ppd/#{make}/#{model}")   
-    remote_file "/usr/share/ppd/#{make}/#{model}/#{ppd}" do
+    FileUtils.mkdir_p("/usr/share/cups/model")   
+    remote_file "/usr/share/cups/model/#{ppd}" do
       source ppd_uri
       mode "0644"
     end
@@ -63,17 +63,18 @@ node["automatic_printers"]["printers_spa"].each do |attributes|
     code <<-EOH
 import cups
 connection=cups.Connection()
-make='#{make}'.replace("_"," ")
-model='#{model}'.replace("_"," ")
-drivers = connection.getPPDs(ppd_make_and_model=make+" "+model)
 ppd = '#{ppd}'
-if ppd != '':
-    for key in drivers.keys():
-        if key.startswith('lsb/usr') and key.endswith(model+'/'+ppd):
-            ppd = key
 
 if ppd == '':
+  make='#{make}'.replace("_"," ")
+  model='#{model}'.replace("_"," ")
+  drivers = connection.getPPDs(ppd_make_and_model=make+" "+model)
+  for key in drivers.keys():
+    if key.startswith('lsb/usr') and key.endswith(model+'/'+ppd):
+      ppd = key
+  if ppd == '':
     ppd = drivers.keys()[0]
+
 
 connection.addPrinter('#{name}',ppdname=ppd, device='#{uri}')
 connection.enablePrinter('#{name}')
